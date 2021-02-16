@@ -10,15 +10,15 @@ class Cliente:
       self.cpf = ''
       self.nomeCompleto = ' '.join(clienteNome.rsplit()).title()
       self.validarCPF(clienteCPF)
+      self.cartoes = {}
 
    def validarCPF(self, clienteCPF):
       if len(str(clienteCPF)) == 11:
          cpf = [
-                [i for i in clienteCPF[0:3] ],
-                [i for i in clienteCPF[3:6] ],
-                [i for i in clienteCPF[6:9] ],
+                [i for i in clienteCPF[0:3] ], "-",
+                [i for i in clienteCPF[3:6] ], "-",
+                [i for i in clienteCPF[6:9] ], "-",
                 [i for i in clienteCPF[9:12]]
                ]
          for i in cpf:
-            self.cpf += ''.join(i) + '-'
-         self.cpf = self.cpf.rstrip('-')
+            self.cpf += ''.join(i)

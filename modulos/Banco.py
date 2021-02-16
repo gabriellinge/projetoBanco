@@ -6,6 +6,7 @@ class Banco:
       Iniciar a criação do banco
       :bancoNome = Nome do banco
       """
+      self.cartosValidos = {}
       self.clientes = {}
       
       self.nome = bancoNome
@@ -14,7 +15,11 @@ class Banco:
       self.juros = 0
 
    def adicionarCliente(self, cliente):
-      cliente.cartao = Cartao(self)
+      if self.nome in cliente.cartoes:
+         self.cartoes[self.nome].append(Cartao(self, cliente))
+      else:
+         self.cartoes[self.nome] = [Cartao(self, cliente)]
+      self.cartosValidos[cliente.cartao.numeracao] = cliente.cartao
       self.clientes[cliente.clienteCPF] = cliente
    
    def totalClientes(self):

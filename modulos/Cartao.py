@@ -5,16 +5,20 @@ class Cartao:
       self.banco = banco
       self.transferenciasComuns = {}
       
-      self.numeracao = random.randint(1000000000, 9000000000)
+      self.numeracao = random.randint(1000000000000000, 9000000000000000)
       self.codigoSeguranca = random.randint(400, 600)
       self.nomeTitular = cliente.nomeCompleto
       self.cpfTitular = cliente.cpf
-      
-      self.debito = False
+
+      self.ativo = True
+      self.debito = True
       self.credito = False
 
       self.saldo = 0
       self.limite = 0
+
+   def cancelarCartao(self):
+      pass
 
    def fazerTransferencia(self, valor=0, cpf='', nomeCompleto=''):
       pass

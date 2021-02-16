@@ -6,7 +6,7 @@ class Banco:
       Iniciar a criação do banco
       :bancoNome = Nome do banco
       """
-      self.cartosValidos = {}
+      self.cartoes = {}
       self.clientes = {}
       
       self.nome = bancoNome
@@ -15,14 +15,36 @@ class Banco:
       self.juros = 0
 
    def adicionarCliente(self, cliente):
-      if self.nome in cliente.cartoes:
-         self.cartoes[self.nome].append(Cartao(self, cliente.nomeCompleto))
+      """
+      Adicionar um cliente ao banco
+      :cliente - Obj Cliente
+      """
+      if not cliente.cpf in self.clientes:
+         self.clientes[cliente.cpf] = cliente
+         self.gerarCartao(cliente)
+      
+   def gerarCartao(self, cliente, tipo="fisico"):
+      if self.nome in cliente.cartoes and not tipo in self.cartoes[self.nome]:
+         cartao = Cartao(self, cliente)
+         self.cartoes[self.nome].append({tipo: cartao})
+         cliente.cartoes[self.nome].append({tipo: cartao})
       else:
-         self.cartoes[self.nome] = [Cartao(self, cliente.nomeCompleto)]
-      self.cartosValidos[cliente.cartao.numeracao] = cliente.cartao
-      self.clientes[cliente.clienteCPF] = cliente
+         cartao = Cartao(self, cliente)
+         self.cartoes[self.nome] = [{tipo: cartao}]
+         cliente.cartoes[self.nome] = [{tipo: cartao}]
+      
+
+   def cancelarCartao(self):
+      pass
+
+   def removerCliente(self, cliente):
+      if self.nome in cliente.cartoes:
+         del self.cartoes[self.nome]
    
    def totalClientes(self):
+      """
+      Retorna o total de clientes no banco
+      """
       return len(self.clientes)
 
    def autorizarTransferencia(self):

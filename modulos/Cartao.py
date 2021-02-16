@@ -7,7 +7,7 @@ class Cartao:
       
       self.numeracao = random.randint(1000000000, 9000000000) if not numeracao else numeracao
       self.codigoSeguranca = random.randint(400, 600)
-      self.titular = cliente.nome
+      self.titular = cliente
       
       self.debito = False
       self.credito = False

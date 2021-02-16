@@ -16,9 +16,9 @@ class Banco:
 
    def adicionarCliente(self, cliente):
       if self.nome in cliente.cartoes:
-         self.cartoes[self.nome].append(Cartao(self, cliente.nome))
+         self.cartoes[self.nome].append(Cartao(self, cliente.nomeCompleto))
       else:
-         self.cartoes[self.nome] = [Cartao(self, cliente.nome)]
+         self.cartoes[self.nome] = [Cartao(self, cliente.nomeCompleto)]
       self.cartosValidos[cliente.cartao.numeracao] = cliente.cartao
       self.clientes[cliente.clienteCPF] = cliente
    
